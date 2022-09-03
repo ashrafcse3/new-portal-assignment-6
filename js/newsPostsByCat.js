@@ -1,7 +1,13 @@
 const displayNewsByCategories = (result, categoryName) => {
     const categoryItemsFound = document.getElementById('category-items-found');
     const newsCardContainer = document.getElementById('news-card-container');
-    // console.log(result);
+    console.log(result);
+    // sort the result array with the highest views first
+    result.sort(function (a, b) {
+        if (a.total_view > b.total_view) return -1;
+        if (a.total_view < b.total_view) return 1;
+        else return 0;
+    });
 
     //show the category name and total items found in html
     categoryItemsFound.innerText = `${result.length} items found for category ${categoryName}`;
