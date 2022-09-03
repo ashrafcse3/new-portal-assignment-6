@@ -8,7 +8,7 @@ const allNewsCategories = async () => {
 const displayAllCategories = (categories) => {
     const categoryContainerUl = document.getElementById('category-ul-container');
     categories.forEach(category => {
-        console.log(category);
+        // console.log(category);
         const categoryLi = document.createElement('li');
         const categoryLiAnchor = document.createElement('a');
         // color all news option at the first loading
