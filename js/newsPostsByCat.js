@@ -49,17 +49,16 @@ const displayNewsByCategories = (result, categoryName) => {
                                 <div class="stat-value text-secondary">${post.total_view ? post.total_view : 'No views'}</div>
                             </div>
 
-                            <label for="my-modal-5">
+                        </div>
+                        <label for="my-modal-5" class="pl-12">
                             <div class="stat" onclick="getSingleNewsDetails('${post._id}')">
-                                <div class="stat-figure text-secondary">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <div class="stat-figure text-secondary text-3xl">
+                                    <i class="fa-solid fa-maximize"></i>
                                 </div>
                                 <div class="stat-title">show</div>
                                 <div class="stat-value">Full post</div>
                             </div>
                             </label>
-
-                        </div>
                     </div>
                 </div>
             </div>
@@ -83,10 +82,15 @@ const showPostDetailsByReducing = details => {
 };
 
 async function getSingleNewsDetails(id) {
-    const detailsUrl = `https://openapi.programming-hero.com/api/news/${id}`;
-    const res = await fetch(detailsUrl);
-    const data = await res.json();
-    showNewsDetails(data.data[0]);
+    try {
+        const detailsUrl = `https://openapi.programming-hero.com/api/news/${id}`;
+        const res = await fetch(detailsUrl);
+        const data = await res.json();
+        showNewsDetails(data.data[0]);
+    } catch (error) {
+        console.log(error);
+    }
+
 }
 
 const showNewsDetails = data => {

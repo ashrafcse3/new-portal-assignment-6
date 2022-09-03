@@ -1,8 +1,12 @@
 const allNewsCategories = async () => {
-    const url = 'https://openapi.programming-hero.com/api/news/categories';
-    const res = await fetch(url);
-    const data = await res.json();
-    displayAllCategories(data.data.news_category);
+    try {
+        const url = 'https://openapi.programming-hero.com/api/news/categories';
+        const res = await fetch(url);
+        const data = await res.json();
+        displayAllCategories(data.data.news_category);
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 const displayAllCategories = (categories) => {
@@ -40,12 +44,17 @@ const showLoadingSpinner = boolean => {
 };
 
 const fetchNewsByCategories = async (categoryID, categoryName) => {
-    const categoryUrl = `https://openapi.programming-hero.com/api/news/category/${categoryID}`;
+    try {
+        const categoryUrl = `https://openapi.programming-hero.com/api/news/category/${categoryID}`;
 
-    const res = await fetch(categoryUrl);
-    const data = await res.json();
+        const res = await fetch(categoryUrl);
+        const data = await res.json();
 
-    displayNewsByCategories(data.data, categoryName);
+        displayNewsByCategories(data.data, categoryName);
+    } catch (error) {
+        console.log(error);
+    }
+
 };
 
 // news posts displayed on the newsPostsByCat js file
