@@ -67,6 +67,9 @@ const displayNewsByCategories = (result, categoryName) => {
         `;
         newsCardContainer.appendChild(divCard);
     }
+
+    // remove the loading spinner
+    showLoadingSpinner(false);
 }
 
 const showPostDetailsByReducing = details => {

@@ -18,12 +18,25 @@ const displayAllCategories = (categories) => {
 
         categoryLiAnchor.innerText = category.category_name;
         categoryLi.onclick = function () {
+            // show a loading spinner in here
+            showLoadingSpinner(true);
+
             categoryLi.classList.add('text-purple-600', 'bg-purple-100', 'rounded-xl');
             fetchNewsByCategories(category.category_id, category.category_name);
         };
         categoryLi.appendChild(categoryLiAnchor);
         categoryContainerUl.appendChild(categoryLi);
     });
+};
+
+const showLoadingSpinner = boolean => {
+    const loadingSpinnerDiv = document.getElementById('category-loading-spinner');
+    if (boolean) {
+        loadingSpinnerDiv.classList.remove('hidden');
+    }
+    else {
+        loadingSpinnerDiv.classList.add('hidden');
+    }
 };
 
 const fetchNewsByCategories = async (categoryID, categoryName) => {
