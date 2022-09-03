@@ -1,0 +1,51 @@
+<!doctype html>
+<html data-theme="cupcake">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desher-Dosher Blog</title>
+    <!-- daisyui cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <!-- tailwindcss cdn -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="container mx-auto">
+    <header>
+        <nav>
+            <div class="navbar bg-base-100">
+                <div class="flex-1">
+                    <a class="btn btn-ghost normal-case text-xl space-x-1">
+                        <span class="bg-purple-600 text-white rounded p-1">দেশের - দশের</span>
+                        <span class="text-purple-600">ব্লগ</span>
+                    </a>
+                </div>
+                <div class="flex-none">
+                    <ul class="menu menu-horizontal p-0">
+                        <li><a href="index.html">News</a></li>
+                        <li class="text-purple-600 font-bold underline decoration-2 underline-offset-4"><a>Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="divider"></div>
+    </header>
+    <main>
+        <!-- Item found in a category start -->
+        <div class="alert bg-white my-9">
+            <div>
+                <span id="category-items-found">4 posts are avaialble in this blog</span>
+            </div>
+        </div>
+        <!-- Item found in a category end -->
+
+        <!-- all of the different cards -->
+        <section id="blog-card-container">
+            <!-- code will injected from blog.js file -->
+        </section>
+    </main>
+    <script src="js/blog.js"></script>
+</body>
+
+</html>

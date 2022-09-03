@@ -11,6 +11,7 @@ const allNewsCategories = async () => {
 
 const displayAllCategories = (categories) => {
     const categoryContainerUl = document.getElementById('category-ul-container');
+    console.log(categories);
     categories.forEach(category => {
         // console.log(category);
         const categoryLi = document.createElement('li');
@@ -24,8 +25,11 @@ const displayAllCategories = (categories) => {
         categoryLi.onclick = function () {
             // show a loading spinner in here
             showLoadingSpinner(true);
+            // categoryLi.classList.remove('text-purple-600', 'bg-purple-100', 'rounded-xl');
 
-            categoryLi.classList.add('text-purple-600', 'bg-purple-100', 'rounded-xl');
+            // if (category.category_id) {
+            //     categoryLi.classList.add('text-purple-600', 'bg-purple-100', 'rounded-xl');
+            // }
             fetchNewsByCategories(category.category_id, category.category_name);
         };
         categoryLi.appendChild(categoryLiAnchor);
