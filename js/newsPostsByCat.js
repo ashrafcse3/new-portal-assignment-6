@@ -14,7 +14,7 @@ const displayNewsByCategories = (result) => {
             <div class="bg-white col-span-12 sm:col-span-8 lg:col-span-8">
                 <div class="card-body">
                     <h2 class="card-title">${post.title}</h2>
-                    <p class="text-gray-400 text-sm leading-8">${post.details}</p>
+                    <p class="text-gray-400 text-sm leading-8">${showPostDetailsByReducing(post.details)}</p>
                     <div class="card-actions">
                         <div class="stats shadow">
 
@@ -63,6 +63,16 @@ const displayNewsByCategories = (result) => {
         newsCardContainer.appendChild(divCard);
     }
 }
+
+const showPostDetailsByReducing = details => {
+    const wordCount = details.length;
+    if (wordCount > 600) {
+        let reducedString = details.substr(0, 600);
+        reducedString = reducedString + '<span class="text-black text-3xl">...</span>';
+        return reducedString;
+    }
+    else return details;
+};
 
 async function getSingleNewsDetails(id) {
     const detailsUrl = `https://openapi.programming-hero.com/api/news/${id}`;
