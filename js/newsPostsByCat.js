@@ -1,9 +1,11 @@
 const displayNewsByCategories = (result) => {
     const newsCardContainer = document.getElementById('news-card-container');
+    // To empty the earlier post news
+    newsCardContainer.innerHTML = '';
     for (const post of result) {
         const divCard = document.createElement('div');
         divCard.classList.add('mb-5');
-        console.log(post);
+        // console.log(post);
         divCard.innerHTML = `
         <div class="grid grid-cols-12 gap-4 card lg:card-side bg-white shadow-xl p-6">
             <div class="bg-white col-span-12 sm:col-span-4 lg:col-span-4">
@@ -42,6 +44,16 @@ const displayNewsByCategories = (result) => {
                                 <div class="stat-value text-secondary">${post.total_view ? post.total_view : 'No views'}</div>
                             </div>
 
+                            <label for="my-modal-5">
+                            <div class="stat" onclick="getSingleNewsDetails('${post._id}')">
+                                <div class="stat-figure text-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <div class="stat-title">show</div>
+                                <div class="stat-value">Full post</div>
+                            </div>
+                            </label>
+
                         </div>
                     </div>
                 </div>
@@ -51,3 +63,23 @@ const displayNewsByCategories = (result) => {
         newsCardContainer.appendChild(divCard);
     }
 }
+
+async function getSingleNewsDetails(id) {
+    const detailsUrl = `https://openapi.programming-hero.com/api/news/${id}`;
+    const res = await fetch(detailsUrl);
+    const data = await res.json();
+    showNewsDetails(data.data[0]);
+}
+
+const showNewsDetails = data => {
+    console.log(data);
+    const detailsTitle = document.getElementById('details-title');
+    const detailsBody = document.getElementById('details-body');
+
+    detailsTitle.innerText = data.title;
+    detailsBody.innerHTML = `
+    ${data.details} <br><br><br>
+    Written by: <span class='font-bold'>${data.author.name ? data.author.name : 'No author found'}</span>
+    on ${data.author.published_date ? data.author.published_date : 'No date found'}
+    `;
+};
