@@ -19,22 +19,20 @@ const displayAllCategories = (categories) => {
         categoryLiAnchor.innerText = category.category_name;
         categoryLi.onclick = function () {
             categoryLi.classList.add('text-purple-600', 'bg-purple-100', 'rounded-xl');
-            fetchNewsByCategories(category.category_id);
+            fetchNewsByCategories(category.category_id, category.category_name);
         };
         categoryLi.appendChild(categoryLiAnchor);
         categoryContainerUl.appendChild(categoryLi);
     });
 };
 
-const fetchNewsByCategories = async (categoryID) => {
+const fetchNewsByCategories = async (categoryID, categoryName) => {
     const categoryUrl = `https://openapi.programming-hero.com/api/news/category/${categoryID}`;
 
     const res = await fetch(categoryUrl);
     const data = await res.json();
 
-    // set the founded category length and name.
-
-    displayNewsByCategories(data.data);
+    displayNewsByCategories(data.data, categoryName);
 };
 
 // news posts displayed on the newsPostsByCat js file

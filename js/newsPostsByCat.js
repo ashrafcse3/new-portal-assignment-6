@@ -1,5 +1,10 @@
-const displayNewsByCategories = (result) => {
+const displayNewsByCategories = (result, categoryName) => {
+    const categoryItemsFound = document.getElementById('category-items-found');
     const newsCardContainer = document.getElementById('news-card-container');
+    // console.log(result);
+
+    //show the category name and total items found in html
+    categoryItemsFound.innerText = `${result.length} items found for category ${categoryName}`;
     // To empty the earlier post news
     newsCardContainer.innerHTML = '';
     for (const post of result) {
@@ -82,7 +87,7 @@ async function getSingleNewsDetails(id) {
 }
 
 const showNewsDetails = data => {
-    console.log(data);
+    // console.log(data);
     const detailsTitle = document.getElementById('details-title');
     const detailsBody = document.getElementById('details-body');
 
