@@ -12,14 +12,31 @@ const displayAllCategories = (categories) => {
         const categoryLi = document.createElement('li');
         const categoryLiAnchor = document.createElement('a');
         // color all news option at the first loading
-        if (category.category_name === 'All News') {
-            categoryLi.classList.add('text-purple-600', 'bg-purple-100', 'rounded-xl');
-        }
+        // if (category.category_name === 'All News') {
+        //     categoryLi.classList.add('text-purple-600', 'bg-purple-100', 'rounded-xl');
+        // }
 
         categoryLiAnchor.innerText = category.category_name;
+        categoryLi.onclick = function () {
+            categoryLi.classList.add('text-purple-600', 'bg-purple-100', 'rounded-xl');
+            fetchNewsByCategories(category.category_id);
+        };
         categoryLi.appendChild(categoryLiAnchor);
         categoryContainerUl.appendChild(categoryLi);
     });
 };
+
+const fetchNewsByCategories = async (categoryID) => {
+    const categoryUrl = `https://openapi.programming-hero.com/api/news/category/${categoryID}`;
+
+    const res = await fetch(categoryUrl);
+    const data = await res.json();
+
+    // set the founded category length and name.
+
+    displayNewsByCategories(data.data);
+};
+
+// news posts displayed on the newsPostsByCat js file
 
 allNewsCategories();
